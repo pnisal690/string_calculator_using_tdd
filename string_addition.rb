@@ -1,7 +1,3 @@
-# @params: number_string: a string of comma-separated numbers
-# @returns: an integer, sum of the numbers
-def add(a,b)
-  a+b 
+def add(input)
+  return 0 if input.empty?
 end
-
-p add(3,5)
