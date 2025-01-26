@@ -16,11 +16,16 @@ def add(input)
   input = input.gsub("\\n", "\n") # Sanitize input
 
   if input.start_with?("//")
-    # Extract custom delimiters and input section
-    delimiter_section, input_section = input.split("\n", 2)
-    custom_delimiters = [delimiter_section[2..]]
-    # Split numbers using custom delimiters
-    sections = split_by_delimiters(input_section, custom_delimiters)
+      # Extract custom delimiters and input section
+      delimiter_section, input_section = input.split("\n", 2)
+      custom_delimiters = if delimiter_section.include?("[")
+                            delimiter_section.scan(/\[(.*?)\]/).flatten
+                          else
+                            [delimiter_section[2..]]
+                          end
+  
+      # Split numbers using custom delimiters
+      sections = split_by_delimiters(input_section, custom_delimiters)
   else
     # Default delimiter splitting: commas and newlines
     sections = input.split(/,|\n/)

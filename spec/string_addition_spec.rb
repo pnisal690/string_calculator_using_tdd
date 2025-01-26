@@ -44,6 +44,14 @@ RSpec.describe 'String Operations' do
     it 'Allow input contains any custom Delimeter Seperated' do
       expect(add("//;\\n1XY;2_+3(4)$5")).to eq(15)
     end
+
+    it 'Allow multiple delimiters with longer length' do
+      expect(add("//[****]\\n1****2****3")).to eq(6) 
+    end
+
+    it 'Allow multiple delimiters' do
+      expect(add("//[*][%]\n1*2%3")).to eq(6) 
+    end
   end
 end
 
