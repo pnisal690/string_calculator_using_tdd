@@ -36,6 +36,14 @@ RSpec.describe 'String Operations' do
     it 'throws an exception if negative numbers are in custom delimiter format' do
       expect { add("//;\\n1;2;-3;4") }.to raise_error(RuntimeError)
     end
+
+    it 'Allow input contains custom Delimeter Seperated' do
+      expect(add("//;\\n1;2")).to eq(3)
+    end
+
+    it 'Allow input contains any custom Delimeter Seperated' do
+      expect(add("//;\\n1XY;2_+3(4)$5")).to eq(15)
+    end
   end
 end
 
