@@ -28,6 +28,14 @@ RSpec.describe 'String Operations' do
     it 'Numbers bigger than 1000 should be ignored' do 
       expect(add("2,1002")).to eq(2)
     end
+
+    it 'throws an exception if multiple negative numbers are included' do
+      expect { add("1,-2,3,-4") }.to raise_error(RuntimeError, "Negatives not allowed: -2, -4")
+    end
+
+    it 'throws an exception if negative numbers are in custom delimiter format' do
+      expect { add("//;\\n1;2;-3;4") }.to raise_error(RuntimeError)
+    end
   end
 end
 
